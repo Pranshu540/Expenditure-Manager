@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block title %}
+   Add a Subscription
+{% endblock %}
+
+{% block main %}
+  
+    <b><center>Add New Subscriptions</center></b>
+    <br>
+    <form action="/add_service" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="SubscriptionName" placeholder="Subscription" type="text">
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="Cost" placeholder="Cost" type="text">
+        </div>
+
+        <div class="form-group">
+            <input type="number" id="TimeSelect" name="SubscriptionDate" placeholder=
+            "Date" min="1" max="31"><p> Renewal day of your monthly service</p>
+            <!--<label for="calendar">Renewal Date</label>
+            <input id="calendar" class="form-control" name="SubscriptionDate" placeholder="SubscriptionDate" type="date">-->
+        </div>
+
+        <div class="form-group">
+            <!--<label for="calendar">Renewal Time Period:</label>
+            <input type="number" id="TimeSelect" name="TimeSelect" min="1" max="31">
+            <select id="TimePeriod" name="TimePeriod">
+              <option value="days">Days</option>
+              <option value="weeks">Weeks</option>
+              <option value="months">Months</option>
+              <option value="years">Years</option>
+            </select>-->
+        </div>
+
+
+        <br>
+
+
+
+        <button name="submit_button" value="add_service" class="btn btn-primary" type="submit">Add Subscription!</button>
+    </form>
+    <br>
+    <b><center>Delete Existing Subscriptions</center></b>
+    <br>
+
+    <form class="mt-5" action="/add_service" method="post">
+      {% for x in services%}
+        <button name="submit_button" value="{{ x[0] }}" class="btn btn-primary" type="submit">Delete {{ x[2] }}</button>
+      {% endfor %}
+    </form>
+
+    {% if error %}
+      <h2>{{ error }}</h2>
+    {% endif %}
+
+
+
+
+
+{% endblock %}
+
+
+
+

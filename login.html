@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+<div class="row justify-content-md-center">
+  <div class="col-md-auto">
+    <h1 class="m-4" style="text-align:center;"> EXPENDITURE MANAGER</h1>
+    <h3><center>Log In</center></h3>
+    <div class="container m-4">If you do not have an account, then be sure to <a style="color:black;" href="/register">register!</a></div>
+    <b>
+    <form action="/login" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text">
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="password" placeholder="Password" type="password">
+        </div>
+        <button class="btn btn-primary" type="submit">Log In</button>
+    </form>
+  </div>
+  
+  
+</div>
+  {% if error %}
+    <h4 class="row justify-content-md-center"> {{error}} </h4>
+  {% endif %}
+<div style="height:63.4vh">
+</div>
+{% endblock %}

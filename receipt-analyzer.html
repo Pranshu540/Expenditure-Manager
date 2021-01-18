@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  Analyze A Receipt
+{% endblock %}
+
+
+{% block main %}
+
+<div class="container">
+		<h1>Analyze A Receipt</h1>
+		<form action="/compute-receipt-analysis" method="POST">
+      <div class="form-group"><label for="destination">Unique Name</label>
+            <input id="unique_name" class="form-control" name="unique_name" type="text" placeholder="type in a unique name to avoid duplicates" /></div>
+			<div class="form-group"><label for="destination">Image Url</label>
+            <input id="img_link" class="form-control" name="img_link" type="url" placeholder="type in a link to an image" /></div>
+        <button class="btn btn-default" type="submit">Confirm</button>
+    </form>
+    <h3>Keep track of your spending!</h3>
+    <a style="color:black;" href="{{ url_for('download') }}">Download all receipt info!!</a>
+</div>
+
+{% endblock %}

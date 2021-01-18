@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  Register
+{% endblock %}
+
+{% block main %}
+<div class="row justify-content-md-center">
+  {% if error %}
+    <h4 class="row justify-content-md-center"> {{error}} </h4>
+  {% endif %}
+  <h1> EXPENDITURE MANAGER</h1>
+  <div class="row align-items-center">
+    <div class="col">
+      <center class="mt-5">Come register and join <strong>{{user_count[0][0]}}</strong> other users!</center>
+      <strong><p class="mt-2 container">Have you ever forgotten to cancel a regular payment?? Are you tired of paying Jeff Bezos?? If so, try our app today!</p></strong>
+       <img class="container" style="width:300px;" src="https://i.imgur.com/8D5bJpo.png"/>
+    </div>
+    <div class="col">
+      <div class="col-md-auto">
+    <form action="/register" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text">
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="password" placeholder="Password" type="password">
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="password-confirm" placeholder="Confirm Password" type="password">
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="phone" placeholder="Phone Number: EX. 16476576489" type="text">
+        </div>
+        <button class="btn btn-primary" type="submit">Register</button>
+    </form>
+  </div>
+    </div>
+  </div>
+
+
+
+</div>
+{% endblock %}

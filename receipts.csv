@@ -1,0 +1,10 @@
+id,user_id,receipt_name,merchant_name,merchant_address,merchant_phone_number,transaction_date,transaction_time,subtotal,tax,total
+1,5,Name,Contoso Contoso,"123 Main Street Redmond, WA 98052",None,2019-06-10,13:59:00,1098,104,1203.39
+2,5,123,Walmart,1317 N MAIN ST STE Al SUMMERVILLE SC 29483,+18438211991,2013-11-29,04:04:16,299,24,323.98
+3,5,Bro,Walmart,1317 N MAIN ST STE Al SUMMERVILLE SC 29483,+18438211991,2013-11-29,04:04:16,299,24,323.98
+5,5,Test,None,None,None,None,None,0,0,0.0
+6,5,Test2,None,None,None,None,None,0,0,0.0
+7,5,Test3,None,None,None,None,None,0,0,0.0
+8,5,Test4,None,"845 DURBIN PAVILION DR ST JOHNS, FL 32259",None,None,None,9,0,10.58
+9,5,Test5,None,"845 DURBIN PAVILION DR ST JOHNS, FL 32259",None,None,None,9,0,10.58
+13,1,groceries,Walmart,None,+15262370154,2012-09-01,14:16:00,12,5,83.82

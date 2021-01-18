@@ -1,0 +1,266 @@
+{% extends "layout.html" %} {% block title %} template {% endblock %} {% block main %}
+<style>
+	form {
+		margin: 0 auto;
+		max-width: 400px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+
+	input {
+		font-size: 28px;
+		margin-top: 20px;
+	}
+
+
+
+  .view-type{
+    display: flex;
+    justify-content: space-around;
+    width: 60%;
+    margin:auto;
+    margin-top: 2vw;
+    margin-bottom: 4vw;
+    font-size: 1.3em;
+    cursor: pointer;
+  }
+  .view-type div{
+    transition: transform 3s;
+    padding: 0 10px;
+  }
+  .view-type div:hover{
+    background-color:rgba(0,0,0,0.05);
+  }
+
+
+  
+	.square {
+		height: 50px;
+		width: 50px;
+		background-color: #4c9eba;
+	}
+	.list-style {
+		margin: 20px;
+    display:none;
+	}
+	.list-item-color {
+		color: #aeb1b8;
+	}
+	.list-grid-containter {
+		background-color: #182031;
+		display: grid;
+		grid-template-columns: 55px 1fr;
+		padding: 10px 0;
+		padding-left: 5px;
+		align-items: center;
+		transition: transform 0.5s
+	}
+	.list-grid-containter:hover {
+		transform: scale(1.05);
+	}
+
+  
+
+  .btn-primary {
+    color: #fff;
+    background-color: #0495c9;
+    border-color: #357ebd; /*set the color you want here*/
+  }
+
+  #chartContainer{
+    display:none;
+  }
+
+  @media only screen and (max-width: 1200px) {
+	.view-type{
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 768px) {
+	.view-type{
+    justify-content: center;
+    text-align: center;
+    width: 80%;
+    display:grid;
+    grid-template-columns: 100%;
+    grid-gap: 20px;
+  }
+}
+@media only screen and (max-width: 465) {
+	.view-type{
+    justify-content: center;
+    text-align: center;
+    width: 60%;
+    display:grid;
+    grid-template-columns: 100%;
+    grid-gap: 20px;
+  }
+  .view-type a{
+    font-size: 0.7em;
+  }
+}
+</style>
+
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+          var calendarEl = document.getElementById('calendar');
+          var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth'
+          });
+          
+          var today = new Date();
+          console.log(today.getFullYear()+"-"+(today.getMonth()+1)+"-")
+
+          {% for x in services %}
+          {% if x[1] > 9 %}
+          if(today.getMonth()+1 >= 10){
+            calendar.addEvent({
+              title:"{{ x[0] }}",
+              start: today.getFullYear()+"-"+(today.getMonth()+1)+"-"+ "{{ x[1] }}",
+              allDay:true
+            });
+          }
+          else{
+            calendar.addEvent({
+              title:"{{ x[0] }}",
+              start: today.getFullYear()+"-0"+(today.getMonth()+1)+"-"+ "{{ x[1] }}",
+              allDay:true
+            });
+          }
+          {%else%}
+          if(today.getMonth()+1 >= 10){
+            calendar.addEvent({
+              title:"{{ x[0] }}",
+              start: today.getFullYear()+"-"+(today.getMonth()+1)+"-"+"0{{ x[1] }}",
+              allDay:true
+            });
+          }
+          else{
+            calendar.addEvent({
+              title:"{{ x[0] }}",
+              start: today.getFullYear()+"-0"+(today.getMonth()+1)+"-"+"0{{ x[1] }}",
+              allDay:true
+            });
+          }
+          {%endif%}
+          {% endfor %}
+          
+          calendar.render();
+        });
+</script>
+
+<script>
+	function viewList() {
+    var x = document.getElementById("list-of-subscriptions");
+    var y = document.getElementById("calendar");
+    var z = document.getElementById("chartContainer");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+      y.style.display = "none";
+      z.style.display = "block";
+    } else if (y.style.display === "none"){
+      x.style.display = "block";
+      y.style.display = "none";
+      z.style.display = "block";
+    } else {
+      z.style.display = "none";
+      y.style.display = "block";
+      x.style.display = "none";
+    }
+  }
+  function viewCalendar() {
+    var y = document.getElementById("calendar");
+    var x = document.getElementById("list-of-subscriptions");
+    var z = document.getElementById("chartContainer");
+    if (y.style.display === "none") {
+      y.style.display = "block";
+      x.style.display = "none";
+      z.style.display = "none";
+    } else if (x.style.display === "none"){
+      y.style.display = "block";
+      x.style.display = "none";
+      z.style.display = "none";
+    } else {
+      x.style.display = "block";
+      y.style.display = "none";
+      z.style.display = "block";
+    }
+  }
+  
+</script>
+
+
+
+<body>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	 crossorigin="anonymous">
+
+	</script>
+  <h3>Keep track of your spending!</h3>
+  <a style="color:black;" href="{{ url_for('download') }}">Download all receipt info!!</a>
+
+  <div class = "view-type"> 
+    <a class="btn btn-primary" onclick="viewCalendar()"> View Upcoming Dates </a>
+    <a class="btn btn-primary" onclick="viewList()"> View All Subscriptions</a>
+  </div>
+
+
+  <div id='calendar'></div>
+  <div class="row">
+<div class="col">
+  <div class = "list-style" id = "list-of-subscriptions">
+    <div class="container" style="text-align:center">
+      <h2>Your total cost per month is: ${{ cost }}</h2>
+      <h3>Your projected yearly cost is: ${{ cost * 12 }}</h3>
+    </div>
+
+    {% for x in services %}    
+    <div onclick="viewListDetails()" class = "list-grid-containter">
+        <div class="square"></div>
+        <div class = "list-item-color"> {{x[0]}}: {{x[2]}} dollars a month </div>
+    </div>
+    {% endfor %}
+
+  </div>
+</div>
+<div class="col">
+  <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+</div>
+  </div>
+  
+  
+<script>
+window.onload = function() {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	title: {
+		text: "Your monthly bills"
+	},
+	data: [{
+		type: "pie",
+		startAngle: 240,
+		yValueFormatString: "##0.00\"%\"",
+		indexLabel: "{label} {y}",
+		dataPoints: [
+      {% for x in services %}
+        {y: {{ x[2]}}/{{ cost }}*100, label: "{{ x[0] }}"},
+      {% endfor %}
+		]
+	}]
+});
+chart.render();
+
+}
+</script>
+
+
+  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+</body>
+
+
+
+{% endblock %}

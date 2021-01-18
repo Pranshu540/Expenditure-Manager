@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  Receipt Output
+{% endblock %}
+
+
+{% block main %}
+
+<div class="container">
+  <div> Receipt Name: "{{ receipt_id[0] }}" </div>
+  <div> Merchant Name: "{{ receipt_id[1] }}" </div>
+  <div> Merchant Address: "{{ receipt_id[2] }}" </div>
+  <div> Merchant Phone Number: "{{ receipt_id[3] }}" </div>
+  <div> Transaction Date: "{{ receipt_id[4] }}" </div>
+  <div> Transaction Time: "{{ receipt_id[5] }}" </div>
+  <div> Subtotal: "{{ receipt_id[6] }}" </div>
+  <div> Tax: "{{ receipt_id[7] }}" </div>
+  <div> Total: "{{ receipt_id[8] }}" </div>
+</div>
+
+{% endblock %}
